@@ -18,10 +18,21 @@
             <div class="container-principal">
                 <div class="search-filter">
                     <input type="text" class="search" placeholder="Search for a country">
-                    <button type="menu" class="filter">Filter by Region</button>
+                    <div class="menu-drop">
+                        <button type="button" id="filterDefault" class="filter">Filter by Region</button>
+                        <div class="drop-content">
+                            <ul>
+                                <li id="filterAfrica">Africa</li>
+                                <li id="filterAmerica">America</li>
+                                <li id="filterAsia">Asia</li>
+                                <li id="filterEurope">Europe</li>
+                                <li id="filterOceania">Oceania</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <div >
+                <div>
                     <div id="countrys" class="countrys">
                         <!-- <div id="imageCountry" class="image-country"></div>
                             <div id="detailsCountry" class="container-country"></div> -->

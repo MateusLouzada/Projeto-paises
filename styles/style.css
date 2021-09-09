@@ -1,4 +1,4 @@
-.container {   
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,23 +44,56 @@
     outline: none;
 }
 
+.filter {
+    border: none;
+    cursor: pointer;
+    background-color:antiquewhite;
+    padding: 10px;
+    font-size: 15px;
+    color: black;
+    width: 150px;
+}
+
+.menu-drop {
+    text-align: center;
+}
+
+.drop-content {
+    display: none;
+    background-color:beige;
+    position: absolute;
+    width: 150px;
+    margin-top: 5px;
+}
+
+.drop-content li{
+    color: black;
+    cursor: pointer;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .menu-drop:hover .drop-content{
+    display: block;
+  }
+
 .card {
     margin: 30px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     width: 250px;
     margin: 50px;
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
 
 .image-country {
     width: 250px;
     height: 150px;
     object-fit: cover;
-
 }
 
 .container-country {
@@ -69,6 +102,10 @@
     width: 230px;
 }
 
+li, ul {
+    list-style: none;
+    text-decoration: none;
+}
 
 * {
     margin: 0;
