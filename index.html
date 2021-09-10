@@ -17,16 +17,16 @@
 
             <div class="container-principal">
                 <div class="search-filter">
-                    <input type="text" class="search" placeholder="Search for a country">
+                    <input type="text" id="search" class="search" placeholder="Search for a country">
                     <div class="menu-drop">
-                        <button type="button" id="filterDefault" class="filter">Filter by Region</button>
+                        <button type="button" id="filterDefault" class="filter" value="all">Filter by Region</button>
                         <div class="drop-content">
                             <ul>
-                                <li id="filterAfrica">Africa</li>
-                                <li id="filterAmerica">America</li>
-                                <li id="filterAsia">Asia</li>
-                                <li id="filterEurope">Europe</li>
-                                <li id="filterOceania">Oceania</li>
+                                <li id="filterAfrica" value="Africa">Africa</li>
+                                <li id="filterAmerica" value="Americas">America</li>
+                                <li id="filterAsia" value="Asia">Asia</li>
+                                <li id="filterEurope" value="Europe">Europe</li>
+                                <li id="filterOceania" value="Oceania">Oceania</li>
                             </ul>
                         </div>
                     </div>

@@ -1,31 +1,65 @@
-const countrys = document.getElementById("countrys");
+
 const imageCountrys = document.getElementById("imageCountry");
 const detailsCountrys = document.getElementById("detailsCountry");
-var url = "https://restcountries.eu/rest/v2/all";
+let url = "https://restcountries.eu/rest/v2/all";
+var allCountrys = [];
 
-render();
-addEventsFilters();
+init();
 
-function render() {
-    homePage();
+async function init() {
+    await getCountrys();
+    await addEventSearch();
+    render(allCountrys);
+    addEventsFilters();
 }
 
-function homePage() {
-fetch(url)
-    .then((resp) => resp.json())
-    .then(function (data) {
-        data.forEach(country => {
-            const card = document.createElement("div");
-            insertImage(card, country.flag);
-            insertDetais(card, country);
-            card.classList.add("card");
-            countrys.appendChild(card);
+function render(countrysUsed) {
+    homePage(countrysUsed);
+}
+
+async function getCountrys() {
+    await fetch(url)
+        .then((resp) => resp.json()).then(data => {
+            for (i = 0; i < Object.keys(data).length; i++) {
+                allCountrys.push(data[i])
+
+            }
+        }).catch(function (error) {
+            console.log(error);
         });
-    })
-.catch(function(error){
-    console.log(error)
-});
 }
+
+async function addEventSearch() {
+    const input = document.getElementById("search");
+    let countrys = [];
+
+    input.addEventListener("keyup", function() {
+        countrys = allCountrys.filter(function (country) {
+            const countryName = country.name.toLowerCase();
+            if(countryName.includes(input.value)){
+                return country;
+            }
+        })
+        render(countrys);
+    })
+}
+
+function homePage(countrys) {
+    const countrysHomePage = document.getElementById("countrys");
+    countrysHomePage.innerText = "";
+
+    countrys.forEach(country => {
+        const card = document.createElement("div");
+        insertImage(card, country.flag);
+        insertDetais(card, country);
+        card.classList.add("card");
+        countrysHomePage.appendChild(card);
+    });
+
+
+}
+
+
 
 function addEventsFilters() {
     const filterDefault = document.getElementById("filterDefault");
@@ -34,41 +68,33 @@ function addEventsFilters() {
     const filterAsia = document.getElementById("filterAsia");
     const filterEurope = document.getElementById("filterEurope");
     const filterOceania = document.getElementById("filterOceania");
+    let countrys = [];
 
-
-    filterDefault.addEventListener("click", function(){
-        url = "https://restcountries.eu/rest/v2/all";
-        countrys.innerText = "";
-        render();
+    filterDefault.addEventListener("click", function () {
+        render(allCountrys);
     });
 
-    filterAfrica.addEventListener("click", function() { 
-        url = "https://restcountries.eu/rest/v2/region/africa";
-        countrys.innerText = "";
-        render();
+    filterAfrica.addEventListener("click", function () {
+        countrys = allCountrys.filter(country => ("Africa" === country.region))
+        render(countrys);
     });
-    filterAmerica.addEventListener("click", function() { 
-        url = "https://restcountries.eu/rest/v2/region/americas";
-        countrys.innerText = "";
-        render();
+    filterAmerica.addEventListener("click", function () {
+        countrys = allCountrys.filter(country => ("Americas" === country.region))
+        render(countrys);
     });
-    filterAsia.addEventListener("click", function() { 
-        url = "https://restcountries.eu/rest/v2/region/asia";
-        countrys.innerText = "";
-        render();
+    filterAsia.addEventListener("click", function () {
+        countrys = allCountrys.filter(country => ("Asia" === country.region))
+        render(countrys);
     });
-    filterEurope.addEventListener("click", function() { 
-        url = "https://restcountries.eu/rest/v2/region/europe";
-        countrys.innerText = "";
-        render();
+    filterEurope.addEventListener("click", function () {
+        countrys = allCountrys.filter(country => ("Europe" === country.region))
+        render(countrys);
     });
-    filterOceania.addEventListener("click", function() { 
-        url = "https://restcountries.eu/rest/v2/region/oceania";
-        countrys.innerText = "";
-        render();
-    });   
+    filterOceania.addEventListener("click", function () {
+        countrys = allCountrys.filter(country => ("Oceania" === country.region))
+        render(countrys);
+    });
 }
-
 
 function insertImage(card, linkImage) {
     const image = document.createElement("img");
