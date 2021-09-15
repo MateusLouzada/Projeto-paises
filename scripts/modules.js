@@ -112,7 +112,7 @@ function insertDetais(card, country) {
 function insertEventCard(card, country) {
     card.addEventListener("click", function () {
         localStorage.setItem("country", JSON.stringify(country));
-        const urlDetails = location.href + "details.html";
+        const urlDetails = "https://mateuslouzada.github.io/Projeto-paises/details.html";
         location.assign(urlDetails);  
     });
 }
