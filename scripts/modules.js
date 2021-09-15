@@ -1,48 +1,48 @@
-var allCountrys = [];
+var allcountries = [];
 
-export async function render(countrysUsed, countrysHomePage) {
-    await homePage(countrysUsed, countrysHomePage);
+export async function render(countriesUsed, countriesHomePage) {
+    await homePage(countriesUsed, countriesHomePage);
 }
 
-export async function getCountrysAPI(url) {
+export async function getcountriesAPI(url) {
     await fetch(url)
         .then((resp) => resp.json()).then(data => {
             for (let i = 0; i < Object.keys(data).length; i++) {
-                allCountrys.push(data[i])
+                allcountries.push(data[i])
             }
         }).catch(function (error) {
             console.log(error);
         });        
 }
 
-export function getCountrys() {
-    return allCountrys;
+export function getcountries() {
+    return allcountries;
 }
 
-export function addEventSearch(input, countrysHomePage) {
-    let countrys = [];
+export function addEventSearch(input, countriesHomePage) {
+    let countries = [];
 
     input.addEventListener("keyup", function () {
-        countrys = allCountrys.filter(function (country) {
+        countries = allcountries.filter(function (country) {
             const countryName = country.name.toLowerCase();
             if (countryName.includes(input.value)) {
                 return country;
             }
         })
-        render(countrys, countrysHomePage);
+        render(countries, countriesHomePage);
     })
 }
 
-async function homePage(countrys, countrysHomePage) {
-    countrysHomePage.innerText = "";
+async function homePage(countries, countriesHomePage) {
+    countriesHomePage.innerText = "";
 
-    countrys.forEach(country => {
+    countries.forEach(country => {
         const card = document.createElement("div");
         insertImage(card, country.flag);
         insertDetais(card, country);
         insertEventCard(card, country);
         card.classList.add("card");
-        countrysHomePage.appendChild(card);
+        countriesHomePage.appendChild(card);
     });
 
 
@@ -50,33 +50,33 @@ async function homePage(countrys, countrysHomePage) {
 
 
 
-export function addEventsFilters(filterDefault, filterAfrica, filterAmerica, filterAsia, filterEurope, filterOceania, countrysHomePage) {
+export function addEventsFilters(filterDefault, filterAfrica, filterAmerica, filterAsia, filterEurope, filterOceania, countriesHomePage) {
 
-    let countrys = [];
+    let countries = [];
 
     filterDefault.addEventListener("click", function () {
-        render(allCountrys, countrysHomePage);
+        render(allcountries, countriesHomePage);
     });
 
     filterAfrica.addEventListener("click", function () {
-        countrys = allCountrys.filter(country => ("Africa" === country.region))
-        render(countrys, countrysHomePage);
+        countries = allcountries.filter(country => ("Africa" === country.region))
+        render(countries, countriesHomePage);
     });
     filterAmerica.addEventListener("click", function () {
-        countrys = allCountrys.filter(country => ("Americas" === country.region))
-        render(countrys, countrysHomePage);
+        countries = allcountries.filter(country => ("Americas" === country.region))
+        render(countries, countriesHomePage);
     });
     filterAsia.addEventListener("click", function () {
-        countrys = allCountrys.filter(country => ("Asia" === country.region))
-        render(countrys, countrysHomePage);
+        countries = allcountries.filter(country => ("Asia" === country.region))
+        render(countries, countriesHomePage);
     });
     filterEurope.addEventListener("click", function () {
-        countrys = allCountrys.filter(country => ("Europe" === country.region))
-        render(countrys, countrysHomePage);
+        countries = allcountries.filter(country => ("Europe" === country.region))
+        render(countries, countriesHomePage);
     });
     filterOceania.addEventListener("click", function () {
-        countrys = allCountrys.filter(country => ("Oceania" === country.region))
-        render(countrys, countrysHomePage);
+        countries = allcountries.filter(country => ("Oceania" === country.region))
+        render(countries, countriesHomePage);
     });
 }
 
@@ -111,12 +111,99 @@ function insertDetais(card, country) {
 
 function insertEventCard(card, country) {
     card.addEventListener("click", function () {
-        //Para funcionar no GITHUB
-        //const urlDetails = location.href + "details.html";
-        //location.assign(urlDetails);
+        localStorage.setItem("country", JSON.stringify(country));
+        const urlDetails = location.href + "details.html";
+        location.assign(urlDetails);  
+    });
+}
+
+export function eventBack(button) {
+    button.addEventListener("click", function() {
+        localStorage.removeItem("country");
+        //GitHub
+        const urlDetails = "https://mateuslouzada.github.io/Projeto-paises/";
+        location.assign(urlDetails);
         
         //Para testes
-        localStorage.setItem("country", JSON.stringify(country));
-        location.href = "http://127.0.0.1:5500/details.html";
+        //const urlDetails = "";
+        //location.assign(urlDetails);
     });
+}
+
+export function positionFlag(country, divFlag){
+    const flag = country.flag;
+    const img = document.createElement("img");
+
+    img.src = flag;
+    img.classList.add("image-country");
+    divFlag.appendChild(img);
+}
+
+export function positionDetails(country, childrens){
+    addLanguages(country);
+    childrens[0].innerHTML = "Native Name: " + country.nativeName;
+    childrens[1].innerHTML = "Population: " + country.population;
+    childrens[2].innerHTML = "Region: " + country.region;
+    childrens[3].innerHTML = "Sub Region: " + country.subregion;
+    childrens[4].innerHTML = "Capital: " + country.capital;
+    childrens[5].innerHTML = "Top Level Domains: " + country.topLevelDomain;
+    childrens[6].innerHTML = "Currencies: " + addCurrencies(country);
+    childrens[7].innerHTML = "Languages: " + addLanguages(country);
+}
+
+function addLanguages(country) {
+    const languages = country.languages;
+    let languagesText = "";
+    
+    languages.forEach(language => {
+        if(languagesText == ""){
+            languagesText = language.name;
+        }else{
+            languagesText = languagesText + ", " + language.name;
+        }
+    });
+
+    return languagesText;
+}
+
+function addCurrencies(country){
+    const currencies = country.currencies;
+    let currenciesText = "";
+    
+    currencies.forEach(currencie => {
+        if(currenciesText == ""){
+            currenciesText = currencie.name;
+        }else{
+            currenciesText = currenciesText + ", " + currencie.name;
+        }
+    });
+
+    return currenciesText;
+}
+
+export function titleCountry(country, title){
+    title.innerText = country.name
+}
+
+export async function borderCountries(country, borderCountries) {
+    const borders = country.borders;
+
+    await borders.forEach(border => {
+        const url = "https://restcountries.eu/rest/v2/alpha/" + border;
+
+        fetch(url)
+        .then((resp) => resp.json()).then(data => {
+            const countryBorder = data.name;
+            
+            const elementBorder = document.createElement("p");
+            elementBorder.innerHTML = countryBorder;
+            elementBorder.classList.add("borders");
+            borderCountries.appendChild(elementBorder);
+        }).catch(function (error) {
+            console.log(error);
+        });
+        
+    });
+
+    
 }

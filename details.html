@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <script type="module" src="./scripts/details.js"></script>
-</body>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="./styles/details.css" media="screen" />
+    </head>
+
+    <body>
+        <div class="container">
+            <header class="header">
+                <h2>Where in the world?</h2>
+            </header>
+
+            <div class="principal">
+                <div class="back">
+                    <button type="button" id="buttonBack" class="button-back" value="back">Back</button>
+                </div>
+
+                <div class="details">
+                    <div id="flag" class="flag">
+
+                    </div>
+                    <div class="d-country">
+                        <div id="title" class="title">
+                            <h2>TESTE</h2>
+                        </div>
+
+                        <div id="detailsCountry" class="details-country">
+                            <p class="sub-details">Native Name: <span id="nameCountry"></span></p>
+                            <p class="sub-details">Population: <span id="population"></span></p>
+                            <p class="sub-details">Region: <span id="region"></span></p>
+                            <p class="sub-details">Sub Region: <span id="subRegion"></span></p>
+                            <p class="sub-details">Capital: <span id="capital"></span></p>
+                            <p class="sub-details">Top level Domains: <span id="topLevelDomain"></span></p>
+                            <p class="sub-details">Currencies: <span id="currencies"></span></p>
+                            <p class="sub-details">Languages: <span id="languages"></span></p>
+                        </div>
+
+
+                        <div id="borderCountries" class="border-countries">
+                            <span>Border Countries:</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="./scripts/details.js"></script>
+    </body>
+
 </html>
