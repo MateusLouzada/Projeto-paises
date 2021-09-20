@@ -1,15 +1,47 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: "Nunito Sans";
+}
+
+@font-face {
+    font-family: "Nunito Sans";
+    src: url("../fonts/NunitoSans-Regular.ttf");
+    font-weight: 300, 600, 800;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0%;
+    }
+    
+    to {
+        opacity: 100%;
+    }
+}
+
+body {
+    background-color: hsl(0, 0%, 98%);
 }
 
 .container {
+    animation-name: fadein;
+    animation-duration: 0.3s;
     max-width: 1440px;
+    width: 99%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.principal {
+
     margin: auto;
 }
 
 .header {
-    padding: 1.5rem 3rem;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    max-width: 1440px;
+    padding: 25px;
 }
 
 .back {
@@ -17,15 +49,41 @@
 }
 
 .button-back {
-    width: 5rem;
+    width: 7rem;
     height: 2rem;
     border-radius: 3px;
     border: none;
-    background-color: aliceblue;
+    background-repeat: no-repeat;
+    background-position-x: 15px;
+    background-position-y: center;
+    background-size: 13px;
+    background-image: url("../imgs/seta.png");
+    background-color: white;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
 }
 
 .button-back:hover {
-    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 924px)  {
+    .details {
+        flex-wrap: wrap;
+    }
+
+    .image-country {
+        width: 80% !important;
+        height: auto !important;
+    }
+
+    .d-country {
+        margin: 0;
+        text-align: center;
+    }
+
+    .details-country {
+        display: block ; 
+    }
 }
 
 .details {
@@ -34,16 +92,24 @@
 }
 
 .flag {
-    width: 500px;
-    height: 400px;
-    background-color: aqua;
-    margin-right: 3rem;
+    width: auto;
+    height: auto;
+    max-width: 35rem;
+    max-height: 25rem;
+}
+
+.image-country {
+    display: block;
+    margin: auto;
+    object-fit: cover;
+    width: 110%;
+    height: 85%;
 }
 
 .d-country {
     text-align: left;
-    width: 600px;
-    margin-left: 3rem;
+    width: 80%;
+    margin-left: 6rem;
 }
 
 .title {
@@ -54,19 +120,13 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 200px;
+    height: 40%;
     padding-bottom: 2rem;
     font-weight: bold;
 }
 
 .sub-details {
     padding-bottom: 1rem;
-}
-
-.image-country {
-    width: 500px;
-    height: 400px;
-    object-fit: cover;
 }
 
 .title {
@@ -82,9 +142,34 @@
 
 .borders {
     font-weight: normal;
-    padding: 0.08rem;
-    margin: 0.1rem;
+    text-align: center;
+    padding: 2px 6px;
+    margin-left: 4px;
+    margin-bottom: 4px;
     border-radius: 3px;
-    background-color: aliceblue;
     box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.1);
 }
+
+
+@media screen and (max-width: 924px)  {
+    .details {
+        flex-wrap: wrap;
+    }
+
+    .image-country {
+        width: 80% ;
+        height: auto ;
+    }
+
+    .d-country {
+        margin: 0;
+        text-align: center;
+    }
+
+    .details-country {
+        display: block;
+        height: auto;
+    }
+
+}
+

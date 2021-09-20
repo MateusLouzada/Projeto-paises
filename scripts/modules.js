@@ -120,13 +120,8 @@ function insertEventCard(card, country) {
 export function eventBack(button) {
     button.addEventListener("click", function() {
         localStorage.removeItem("country");
-        //GitHub
         const urlDetails = "https://mateuslouzada.github.io/Projeto-paises/";
         location.assign(urlDetails);
-        
-        //Para testes
-        //const urlDetails = "";
-        //location.assign(urlDetails);
     });
 }
 
