@@ -1,0 +1,22 @@
+{
+  "name": "Projeto-paises",
+  "version": "1.0.0",
+  "description": "![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MateusLouzada/Projeto-paises.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MateusLouzada/Projeto-paises/issues"
+  },
+  "homepage": "https://github.com/MateusLouzada/Projeto-paises#readme"
+}
